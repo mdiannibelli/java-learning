@@ -26,5 +26,21 @@ public class CrearPersonas {
             imcs[i] = imc;
         }
         System.out.println();
+
+        // Determinar rango de IMC
+        String estados[] = new String[nroPersonas];
+        for(int j = 0; j < nroPersonas; j++) {
+            double imc = imcs[j];
+
+            if(imc < 18.5) {
+                estados[j] = "Debajo de lo normal";
+            } else if(imc < 25) {
+                estados[j] = "Normal";
+            } else if(imc < 30) {
+                estados[j] = "Sobre peso";
+            } else {
+                estados[j] = "Obesidad";
+            }
+        }
     }
 }
