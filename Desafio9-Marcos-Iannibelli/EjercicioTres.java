@@ -7,14 +7,32 @@ public class EjercicioTres {
         System.out.println("Bienvenido a nuestra encuesta, te pedimos que sigas los pasos...");
 
         do {
-            System.out.println("Usuario " + index + ": Califique el producto A");
             double noteA = Math.floor((Math.random() * 10) + 1);
             calificacionA[index] = (int)noteA;
-            System.out.println("Usuario " + index + ": Califique el producto B");
+           
             double noteB = Math.floor((Math.random() * 10) + 1);
-            calificacionA[index] = (int)noteB;
+            calificacionB[index] = (int)noteB;
 
             index++;
         } while (index < 15);
+
+        int sumaA = 0;
+        int sumaB = 0;
+
+        for(int i = 0; i < index; i++) {
+            sumaA += calificacionA[i];
+            sumaB += calificacionB[i];
+        }
+
+        double promedioA = sumaA / index;
+        double promedioB = sumaB / index;
+        System.out.println("El promedio de A es " + promedioA + " y el promedio de B es " + promedioB);
+        if(promedioA > promedioB) {
+            System.out.println("El producto A es preferido por la gente");
+        } else if (promedioA == promedioB) {
+            System.out.println("Ambos productos son preferidos por igual por la gente");
+        } else {
+            System.out.println("El producto B es preferido por la gente");
+        }
     }
 }
