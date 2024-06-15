@@ -42,7 +42,7 @@ public class SegundoEjercicio {
         kilometersTraveled = road + restFuel;
         for(int i = restFuel; i <= road; i = i + fuel) {
             if(i < fuel) {
-                kilometersTraveled = (kilometers / 2) + diffFuel;
+                kilometersTraveled = (kilometers / 2) - diffFuel;
                 i += fuel;
                 System.out.println("Stop: " + (pointerName + 1) + ", we arrived to " + stops[pointerName] + " and we're in " + kilometersTraveled + " km.");
                 System.out.println("Loading fuel...");
@@ -50,13 +50,13 @@ public class SegundoEjercicio {
             }
 
             if(pointerName < 0) {
-                kilometersTraveled += 100;
+                kilometersTraveled -= 100;
                 System.out.println("We arrived to home! We traveled " + kilometers + " km.");
                 stopsBackward++;
                 break;
             }
             
-            kilometersTraveled += 100;
+            kilometersTraveled -= 100;
             System.out.println("Stop: " + (pointerName + 1) + ", we arrived to " + stops[pointerName] + " and we're in " + kilometersTraveled + " km.");
             System.out.println("Loading fuel...");
             stopsBackward++;
