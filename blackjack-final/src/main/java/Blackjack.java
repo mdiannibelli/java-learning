@@ -1,7 +1,10 @@
+package src.main.java;
+
 import javax.swing.JOptionPane;
 
 public class Blackjack {
     public static void main(String[] args) {
+
         // All BJ Cards
         String cards[] = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
 
@@ -17,6 +20,9 @@ public class Blackjack {
         String crupierMsg = "";
 
         boolean winner = false;
+
+        // Start game
+        BlackjackDialog.showStartMsg();
 
         JOptionPane.showMessageDialog(null, "Dealing cards to the user..", "Phase 1", JOptionPane.INFORMATION_MESSAGE);
         System.out.println("Dealing cards to the user..");
