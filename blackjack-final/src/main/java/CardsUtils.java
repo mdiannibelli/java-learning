@@ -1,20 +1,25 @@
 package src.main.java;
 
-import javax.swing.JOptionPane;
-
 public class CardsUtils {
     public static String[] generateRandomCards(String cards[], int quantity) {
         // Give the cards to the person (user or crupier)
         String newCards[] = new String[quantity];
+        String msg;
         int counter = 0;
-        do {
-            int randomCard = (int) Math.floor(Math.random() * cards.length);
+        int randomCard;
+        while (counter < quantity) {
+            do {
+                randomCard = (int) Math.floor(Math.random() * cards.length);
+            } while (cards[randomCard].equals("card-used"));
             newCards[counter] = cards[randomCard];
-            System.out.println("Card " + (counter + 1) + ": " + newCards[counter]);
-            JOptionPane.showMessageDialog(null, newCards[counter], "Card " + (counter + 1) + ": ",
-                    JOptionPane.INFORMATION_MESSAGE);
+            msg = cards[randomCard].split("-")[0] + " of " + cards[randomCard].split("-")[1];
+            String route = cards[randomCard];
+            System.out.println(route);
+            cards[randomCard] = "card-used";
+            System.out.println("Card: " + msg);
+            BlackjackDialog.showCard(route, msg);
             counter++;
-        } while (counter < quantity);
+        }
 
         return newCards;
     }
@@ -25,16 +30,17 @@ public class CardsUtils {
         for (int i = 0; i < userCards.length; i++) {
             if (userCards[i] == null)
                 break;
-            if (userCards[i] == "K" || userCards[i] == "J" || userCards[i] == "Q") {
+            String card = userCards[i].split("-")[0];
+            if (card.equals("K") || card.equals("J") || card.equals("Q")) {
                 personValue2 += 10;
                 personValue1 += 10;
-            } else if (userCards[i] == "A") {
+            } else if (card.equals("A")) {
                 personValue2 += 1;
                 personValue1 += 11;
                 hasA = true;
             } else {
-                personValue1 += Integer.parseInt(userCards[i]);
-                personValue2 += Integer.parseInt(userCards[i]);
+                personValue1 += Integer.parseInt(card);
+                personValue2 += Integer.parseInt(card);
             }
         }
 
@@ -56,16 +62,17 @@ public class CardsUtils {
         for (int i = 0; i < crupierCards.length; i++) {
             if (crupierCards[i] == null)
                 break;
-            if (crupierCards[i] == "K" || crupierCards[i] == "J" || crupierCards[i] == "Q") {
+            String card = crupierCards[i].split("-")[0];
+            if (card.equals("K") || card.equals("J") || card.equals("Q")) {
                 personValue1 += 10;
                 personValue2 += 10;
-            } else if (crupierCards[i] == "A") {
+            } else if (card.equals("A")) {
                 personValue2 += 1;
                 personValue1 += 11;
                 hasA = true;
             } else {
-                personValue1 += Integer.parseInt(crupierCards[i]);
-                personValue2 += Integer.parseInt(crupierCards[i]);
+                personValue1 += Integer.parseInt(card);
+                personValue2 += Integer.parseInt(card);
             }
 
         }

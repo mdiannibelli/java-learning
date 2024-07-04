@@ -130,6 +130,28 @@ public class BlackjackDialog {
         return selection;
     }
 
+    public static void showCard(String route, String msg) {
+        ImageIcon cardImg = new ImageIcon(Blackjack.class.getResource("/src/main/resources/cards/" + route + ".png"));
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel cardLabelImage = new JLabel(cardImg);
+        cardLabelImage.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel cardLabelText = new JLabel(msg);
+        cardLabelText.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        cardLabelText.setFont(new Font("Arial", Font.BOLD, 20));
+
+        panel.add(cardLabelImage);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(cardLabelText);
+
+        JOptionPane.showMessageDialog(null, panel, "Card",
+                JOptionPane.PLAIN_MESSAGE);
+    }
+
     public static void showUserLose(String msg) {
         ImageIcon userOver21Img = new ImageIcon(Blackjack.class.getResource("/src/main/resources/user-lose.png"));
 
