@@ -97,6 +97,7 @@ public class CardsUtils {
                 return true;
             } else {
                 BlackjackDialog.showBlackjack("Crupier has a Blackjack");
+                BlackjackDialog.showUserLose("Crupier won.");
                 System.out.println("Blackjack!, Crupier wins and you lose.");
                 return true;
             }

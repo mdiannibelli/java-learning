@@ -116,7 +116,7 @@ public class BlackjackDialog {
         panel.add(optionLabelText);
         panel.add(optionLabelSubText);
 
-        String options[] = { "Request card", "Stand" };
+        String options[] = { "HIT", "STAND" };
         var selection = JOptionPane.showOptionDialog(
                 null,
                 panel,
