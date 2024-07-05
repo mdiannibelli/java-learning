@@ -5,6 +5,8 @@ public class Blackjack {
         // !TODO DIAGRAMA DE FLUJO
         // !TODO Documentación README.MD
         // !TODO Implementar apuesta y saldo
+        // !TODO Blackjack solo en la primer ronda, si el usuario se pasa de 21 esperar
+        // a que juegue el crupier para ver si hay empate.
 
         // All BJ Cards
         String cards[] = { "A-Heart", "2-Heart", "3-Heart", "4-Heart", "5-Heart", "6-Heart", "7-Heart", "8-Heart",

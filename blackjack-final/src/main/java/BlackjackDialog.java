@@ -174,6 +174,28 @@ public class BlackjackDialog {
                 JOptionPane.PLAIN_MESSAGE);
     }
 
+    public static void showDraw(String msg) {
+        ImageIcon drawImg = new ImageIcon(Blackjack.class.getResource("/src/main/resources/draw.png"));
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel drawLabelImg = new JLabel(drawImg);
+        drawLabelImg.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel drawLabelText = new JLabel(msg);
+        drawLabelText.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        drawLabelText.setFont(new Font("Arial", Font.BOLD, 20));
+
+        panel.add(drawLabelImg);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(drawLabelText);
+
+        JOptionPane.showMessageDialog(null, panel, "Game Over",
+                JOptionPane.PLAIN_MESSAGE);
+    }
+
     public static void showUserWin(String msg) {
         ImageIcon userWinImg = new ImageIcon(Blackjack.class.getResource("/src/main/resources/user-win.png"));
 

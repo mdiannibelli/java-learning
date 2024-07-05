@@ -1,5 +1,7 @@
 package src.main.java;
 
+import javax.swing.JOptionPane;
+
 public class CardsUtils {
     public static String[] generateRandomCards(String cards[], int quantity) {
         // Give the cards to the person (user or crupier)
@@ -114,21 +116,38 @@ public class CardsUtils {
 
     public static void showWinner(int crupierCardsValue1, int crupierCardsValue2, int userCardsValue1,
             int userCardsValue2) {
-        if (crupierCardsValue1 > 21 && crupierCardsValue2 > 21) {
+        boolean crupierIsOver21 = crupierCardsValue1 > 21 && crupierCardsValue2 > 21;
+        boolean userIsOver21 = userCardsValue1 > 21 && userCardsValue2 > 21;
+        if (crupierIsOver21 && userIsOver21) {
+            BlackjackDialog.showDraw("Both crupier and user are over 21, it's a draw!");
+            System.out.println("Both crupier and user are over 21, it's a draw!");
+            return;
+        } else if (crupierIsOver21) {
             BlackjackDialog.showUserWin("Crupier is over 21, user win!");
             System.out.println("Crupier is over 21, user won!");
             return;
+        } else if (userIsOver21) {
+            BlackjackDialog.showUserLose("User is over 21, Crupier win!");
+            System.out.println("Crupier won!");
+            return;
+        }
+
+        int crupierBestValue = crupierCardsValue1 > 21 ? crupierCardsValue2
+                : Math.max(crupierCardsValue1, crupierCardsValue2);
+        int userBestValue = userCardsValue1 > 21 ? userCardsValue2 : Math.max(userCardsValue1, userCardsValue2);
+
+        if (crupierBestValue == userBestValue) {
+            BlackjackDialog.showDraw("It's a draw!");
+            System.out.println("Draw!");
+            return;
+        } else if (crupierBestValue > userBestValue) {
+            BlackjackDialog.showUserLose("Crupier won!");
+            System.out.println("Crupier won!");
+            return;
         } else {
-            if (crupierCardsValue1 > userCardsValue1 | crupierCardsValue2 > userCardsValue2
-                    | crupierCardsValue1 > userCardsValue2 | crupierCardsValue2 > userCardsValue1) {
-                BlackjackDialog.showUserLose("Crupier won!");
-                System.out.println("Crupier won!");
-                return;
-            } else {
-                BlackjackDialog.showUserWin("User won!");
-                System.out.println("User won!");
-                return;
-            }
+            BlackjackDialog.showUserWin("User won!");
+            System.out.println("User won!");
+            return;
         }
     }
 
@@ -151,7 +170,7 @@ public class CardsUtils {
                     crupierCardsValue2);
             if (winner)
                 return;
-        } while (crupierCardsValue1 < 17 | crupierCardsValue2 < 17);
+        } while (crupierCardsValue1 < 17 && crupierCardsValue2 < 17);
 
         // Show Winner
         showWinner(crupierCardsValue1, crupierCardsValue2, userCardsValue1, userCardsValue2);
