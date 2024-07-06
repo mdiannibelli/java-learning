@@ -162,11 +162,11 @@ public class CardsUtils {
             crupierCardsValue2 = (int) crupierNewCard[2];
             hasCrupierA = (boolean) crupierNewCard[3];
 
-            // Check if crupier has Blackjack
-            winner = checkBlackjack(userCardsValue1, userCardsValue2, crupierCardsValue1,
+            //! Check if crupier has Blackjack, crupier don't show a blackjack msg
+            /* winner = checkBlackjack(userCardsValue1, userCardsValue2, crupierCardsValue1,
                     crupierCardsValue2);
             if (winner)
-                return;
+                return; */
         } while (crupierCardsValue1 < 17 && crupierCardsValue2 < 17);
 
         // Show Winner
