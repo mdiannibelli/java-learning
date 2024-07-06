@@ -1,7 +1,5 @@
 package src.main.java;
 
-import javax.swing.JOptionPane;
-
 public class CardsUtils {
     public static String[] generateRandomCards(String cards[], int quantity) {
         // Give the cards to the person (user or crupier)
