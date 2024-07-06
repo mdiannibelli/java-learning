@@ -7,6 +7,7 @@ public class Blackjack {
         // !TODO Implementar apuesta y saldo
         // !TODO Blackjack solo en la primer ronda, si el usuario se pasa de 21 esperar
         // a que juegue el crupier para ver si hay empate.
+        // !TODO error en la function showWinner al tener un As en el crupier
         // !TODO Sacar carta del array?
 
         // All BJ Cards
@@ -68,6 +69,7 @@ public class Blackjack {
 
         if (selection == 0) {
             // Generate user card;
+
             BlackjackDialog.showGiveUserCardsMsg();
             do {
                 System.out.println("Dealing user's cards...");

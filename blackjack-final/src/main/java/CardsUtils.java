@@ -131,7 +131,8 @@ public class CardsUtils {
 
         int crupierBestValue = crupierCardsValue1 > 21 ? crupierCardsValue2
                 : Math.max(crupierCardsValue1, crupierCardsValue2);
-        int userBestValue = userCardsValue1 > 21 ? userCardsValue2 : Math.max(userCardsValue1, userCardsValue2);
+
+                int userBestValue = userCardsValue1 > 21 ? userCardsValue2 : Math.max(userCardsValue1, userCardsValue2);
 
         if (crupierBestValue == userBestValue) {
             BlackjackDialog.showDraw("It's a draw!");
@@ -167,7 +168,7 @@ public class CardsUtils {
                     crupierCardsValue2);
             if (winner)
                 return; */
-        } while (crupierCardsValue1 < 17 && crupierCardsValue2 < 17);
+        } while (crupierCardsValue1 < 17  || crupierCardsValue2 < 17);
 
         // Show Winner
         showWinner(crupierCardsValue1, crupierCardsValue2, userCardsValue1, userCardsValue2);
