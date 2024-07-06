@@ -20,7 +20,6 @@ public class CardsUtils {
             BlackjackDialog.showCard(route, msg);
             counter++;
         }
-
         return newCards;
     }
 
