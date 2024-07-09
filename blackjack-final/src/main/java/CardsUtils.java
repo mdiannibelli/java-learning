@@ -88,8 +88,8 @@ public class CardsUtils {
         return new Object[] { crupierMsg, personValue1, personValue2, hasA };
     }
 
-    public static boolean checkBlackjack(int userCardsValue, int userCardsValue2, int crupierCardsValue,
-            int crupierCardsValue2) {
+    public static Object[] checkBlackjack(int userCardsValue, int userCardsValue2, int crupierCardsValue,
+            int crupierCardsValue2, int userMoney, int userBet) {
         boolean isBlackjack = false;
         if (userCardsValue == 21 || userCardsValue2 == 21 || crupierCardsValue == 21 || crupierCardsValue2 == 21) {
             isBlackjack = true;
@@ -100,33 +100,31 @@ public class CardsUtils {
                 BlackjackDialog.showBlackjack("You have a Blackjack!");
                 BlackjackDialog.showUserWin("You won.");
                 System.out.println("Blackjack!, You win.");
-                return true;
-            } else {
-                BlackjackDialog.showBlackjack("Crupier has a Blackjack");
-                BlackjackDialog.showUserLose("Crupier won.");
-                System.out.println("Blackjack!, Crupier wins and you lose.");
-                return true;
+                userMoney = userMoney + userBet + (int) Math.floor(userBet * 1.5);
+                return new Object[] { true, userMoney };
             }
         }
-        return false;
+        return new Object[] { false, userMoney };
     }
 
-    public static void showWinner(int crupierCardsValue1, int crupierCardsValue2, int userCardsValue1,
-            int userCardsValue2) {
+    public static int showWinner(int crupierCardsValue1, int crupierCardsValue2, int userCardsValue1,
+            int userCardsValue2, int userMoney, int userBet) {
         boolean crupierIsOver21 = crupierCardsValue1 > 21 && crupierCardsValue2 > 21;
         boolean userIsOver21 = userCardsValue1 > 21 && userCardsValue2 > 21;
         if (crupierIsOver21 && userIsOver21) {
             BlackjackDialog.showDraw("Both crupier and user are over 21, it's a draw!");
             System.out.println("Both crupier and user are over 21, it's a draw!");
-            return;
+            return userMoney;
         } else if (crupierIsOver21) {
             BlackjackDialog.showUserWin("Crupier is over 21, user win!");
             System.out.println("Crupier is over 21, user won!");
-            return;
+            userMoney = userMoney + userBet;
+            return userMoney;
         } else if (userIsOver21) {
             BlackjackDialog.showUserLose("User is over 21, Crupier win!");
             System.out.println("Crupier won!");
-            return;
+            userMoney = userMoney - userBet;
+            return userMoney;
         }
 
         int crupierBestValue = crupierCardsValue1 > 21 ? crupierCardsValue2
@@ -137,20 +135,23 @@ public class CardsUtils {
         if (crupierBestValue == userBestValue) {
             BlackjackDialog.showDraw("It's a draw!");
             System.out.println("Draw!");
-            return;
+            return userMoney;
         } else if (crupierBestValue > userBestValue) {
             BlackjackDialog.showUserLose("Crupier won!");
             System.out.println("Crupier won!");
-            return;
+            userMoney = userMoney - userBet;
+            return userMoney;
         } else {
             BlackjackDialog.showUserWin("User won!");
             System.out.println("User won!");
-            return;
+            userMoney = userMoney + userBet;
+            return userMoney;
         }
     }
 
-    public static void generateCrupierCards(String crupierCards[], int crupierCardsValue1, int crupierCardsValue2,
-            boolean hasCrupierA, boolean winner, int userCardsValue1, int userCardsValue2, String cards[]) {
+    public static int generateCrupierCards(String crupierCards[], int crupierCardsValue1, int crupierCardsValue2,
+            boolean hasCrupierA, boolean winner, int userCardsValue1, int userCardsValue2, String cards[],
+            int userMoney, int userBet) {
         // Generate crupier card;
         BlackjackDialog.showGiveCrupierCardsMsg();
         do {
@@ -175,6 +176,8 @@ public class CardsUtils {
         } while (true);
 
         // Show Winner
-        showWinner(crupierCardsValue1, crupierCardsValue2, userCardsValue1, userCardsValue2);
+        int restMoney = showWinner(crupierCardsValue1, crupierCardsValue2, userCardsValue1, userCardsValue2, userMoney,
+                userBet);
+        return restMoney;
     }
 }
