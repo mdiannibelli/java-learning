@@ -163,7 +163,13 @@ public class CardsUtils {
             crupierCardsValue2 = (int) crupierNewCard[2];
             hasCrupierA = (boolean) crupierNewCard[3];
 
-            if (crupierCardsValue1 >= 17 || crupierCardsValue2 >= 17) {
+            // 11/21 => break... 17/27 break;
+            if (crupierCardsValue2 >= 17 && crupierCardsValue2 <= 21) {
+                break;
+            }
+
+            // >= 21 => break;
+            if (crupierCardsValue1 >= 17) {
                 break;
             }
         } while (true);
